@@ -13,7 +13,10 @@ module.exports.prototype = {
 	},
 	render: function(data) {
 		if(this.response && this.template) {
-			this.response.render(this.template, data);
+			this.response.contentType('text/html');
+			data.text.replace(/\r\n/g, '<br />');
+			console.log('from the BaseView>>>>>>>>>',data.text)
+			this.response.send(this.template, data);
 		}
 	}
 }
